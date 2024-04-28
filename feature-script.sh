@@ -1,27 +1,23 @@
 #!/bin/bash
 
-# Function to capitalize the first letter of a string
-capitalize_first_letter() {
-    string="$1"
-    echo "${string^}"
-}
-
 # Function to create feature base folder
 create_folder() {
     folder_name="$1"
-    capitalized_folder_name="$(capitalize_first_letter "$folder_name")"
     mkdir -p "$pathroute/$folder_name/slice"
     mkdir -p "$pathroute/$folder_name/components"
     mkdir -p "$pathroute/$folder_name/services"
+    mkdir -p "$pathroute/$folder_name/store"
     touch "$pathroute/$folder_name/index.ts"
     touch "$pathroute/$folder_name/slice/index.ts"
     touch "$pathroute/$folder_name/components/index.ts"
     touch "$pathroute/$folder_name/services/index.ts"
+    touch "$pathroute/$folder_name/store/index.ts"
 
     # Populate main folder index.ts
     echo "export * from './slice';" > "$pathroute/$folder_name/index.ts"
     echo "export * from './components';" >> "$pathroute/$folder_name/index.ts"
     echo "export * from './services';" >> "$pathroute/$folder_name/index.ts"
+    echo "export * from './store';" >> "$pathroute/$folder_name/index.ts"
 
     # export folder in index.ts
     echo "export * from './$folder_name';" >> "$pathroute/index.ts"
@@ -31,27 +27,6 @@ create_folder() {
 
     # Populate components folder index.ts
     echo "// Add your component exports here" > "$pathroute/$folder_name/components/index.ts"
-
-    # Create and populate Auth hook, service, and type files in the services folder
-    touch "$pathroute/$folder_name/services/${capitalized_folder_name}.hook.ts"
-    touch "$pathroute/$folder_name/services/${capitalized_folder_name}.service.ts"
-    touch "$pathroute/$folder_name/services/${capitalized_folder_name}.type.ts"
-
-    echo "export * from './${capitalized_folder_name}.hook';" > "$pathroute/$folder_name/services/index.ts"
-    echo "export * from './${capitalized_folder_name}.service';" >> "$pathroute/$folder_name/services/index.ts"
-    echo "export * from './${capitalized_folder_name}.type';" >> "$pathroute/$folder_name/services/index.ts"
-    
-    # Populate Auth hook with the specified content
-    echo "export const ${folder_name}Hook = {" > "$pathroute/$folder_name/services/${capitalized_folder_name}.hook.ts"
-    echo "  mutation: {}," >> "$pathroute/$folder_name/services/${capitalized_folder_name}.hook.ts"
-    echo "  useQuery: {}," >> "$pathroute/$folder_name/services/${capitalized_folder_name}.hook.ts"
-    echo "  prefetch: {}," >> "$pathroute/$folder_name/services/${capitalized_folder_name}.hook.ts"
-    echo "};" >> "$pathroute/$folder_name/services/${capitalized_folder_name}.hook.ts"
-
-    #create export for service
-    echo "export const ${folder_name}Service = {" > "$pathroute/$folder_name/services/${capitalized_folder_name}.service.ts"
-    echo "};" >> "$pathroute/$folder_name/services/${capitalized_folder_name}.service.ts"
-    
 
     echo "Folder '$folder_name' created and exported successfully!"
 }

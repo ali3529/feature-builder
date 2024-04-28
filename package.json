@@ -1,10 +1,18 @@
 {
-  "name": "feature-builder",
+  "name": "acorp-builder",
   "version": "1.0.0",
-  "description": "package for build feature base structur",
-  "bin": {
-    "your-script": "./bin/feature-script.sh"
+  "description": "A utility for generating feature folders in projects",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:b": "bash ./bin/feature-script.sh"
   },
-  "author": "Acorps",
-  "license": "MIT"
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "readline": "^1.3.0"
+  },
+  "bin": {
+    "create-feature": "index.js"
+  }
 }

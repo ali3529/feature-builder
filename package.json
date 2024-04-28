@@ -1,0 +1,10 @@
+{
+  "name": "feature-builder",
+  "version": "1.0.0",
+  "description": "package for build feature base structur",
+  "bin": {
+    "your-script": "./bin/feature-script.sh"
+  },
+  "author": "Acorps",
+  "license": "MIT"
+}

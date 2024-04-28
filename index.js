@@ -49,7 +49,7 @@ export const ${capitalizedFolderName}Page: FC<I${capitalizedFolderName}PageProps
 
     // Create and populate Auth hook, service, and type files in the services folder
     fs.writeFileSync(`${fullPath}/services/${capitalizedFolderName}.hook.ts`, 
-`export const ${folderName}Hook = {
+        `export const ${capitalizedFolderName}Hook = {
   mutation: {},
   useQuery: {},
   prefetch: {},
@@ -58,7 +58,7 @@ export const ${capitalizedFolderName}Page: FC<I${capitalizedFolderName}PageProps
 
     //create export for service
     fs.writeFileSync(`${fullPath}/services/${capitalizedFolderName}.service.ts`, 
-`export const ${folderName}Service = {
+        `export const ${capitalizedFolderName}Service = {
 };
 `);  
 

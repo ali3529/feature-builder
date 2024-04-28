@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+
 const fs = require('fs');
 const readline = require('readline');
 
@@ -31,6 +34,19 @@ export * from './services';
     // Populate components folder index.ts
     fs.writeFileSync(`${fullPath}/components/index.ts`, '// Add your component exports here\n');
 
+    fs.writeFileSync(`${fullPath}/components/${capitalizedFolderName}Page.tsx`,
+        `import React, { FC } from 'react';
+
+interface I${capitalizedFolderName}PageProps {}
+
+export const ${capitalizedFolderName}Page: FC<I${capitalizedFolderName}PageProps> = (props) => {
+  return <div>${capitalizedFolderName}Page</div>;
+};
+
+
+
+`);
+
     // Create and populate Auth hook, service, and type files in the services folder
     fs.writeFileSync(`${fullPath}/services/${capitalizedFolderName}.hook.ts`, 
 `export const ${folderName}Hook = {
@@ -49,6 +65,10 @@ export * from './services';
 //create export for service
     fs.writeFileSync(`${fullPath}/services/${capitalizedFolderName}.type.ts`, 
 `
+`);
+
+    fs.writeFileSync(`${fullPath}/components/index.ts`,
+        `export {${capitalizedFolderName}Page} from './${capitalizedFolderName}Page.tsx';
 `);
 
     // Populate services index.ts
